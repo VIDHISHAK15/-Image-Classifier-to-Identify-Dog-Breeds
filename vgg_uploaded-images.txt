@@ -1,0 +1,46 @@
+Command Line Arguments:
+     dir = uploaded_images/ 
+    arch = vgg 
+    dogfile = dognames.txt
+
+
+Pet Image Label Dictionary has 4 key-value pairs.
+Below are 4 of them:
+ 1 key:           Pen_01.jpg   label:                          m
+ 2 key:           Dog_01.jpg  label:                           f
+ 3 key:           Dog_02.jpg  label:                           d
+ 4 key:           cat_01.jpg   label:                          d
+{'mattress_cover_01.jpg': ['mattress cover', 'neck brace', 0], 'fox_squirrel_01.jpg': ['fox squirrel', 'fox squirrel, eastern fox squirrel, sciurus niger', 1], 'Dalmatian_02.jpg': ['dalmatian', 'dalmatian, coach dog, carriage dog', 1], 'Dalmatian_01.jpg': ['dalmatian', 'dalmatian, coach dog, carriage dog', 1]}
+
+     MATCH:
+
+            Pen_01.jpg 
+Real:               fox squirrel   Classifier:  eastern hammer, sciurus niger
+
+              Dog_02.jpg: 
+Real:                  dalmatian   Classifier: coach dog, beagle
+
+              Dog_01.jpg: 
+Real:                  dalmatian   Classifier: coach dog, beagle
+              cat_01.jpg: 
+Real:                        cat   Classifier: lynx,   
+
+
+ 
+# Total Images 4 # Matches: 2 # NOT Matches: 2
+
+ ** Statistics from calculates_results_stats() function:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog: 100.0 Pct Corr NOTdog: 100.0  Pct Corr Breed: 100.0
+
+ ** Check Statistics - calculated from this function as a check:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog: 100.0 Pct Corr NOTdog: 100.0  Pct Corr Breed: 100.0
+Number of not dog images is 2
+Percentage of correctly classified not dogs is 100.0
+All the percentages include: pct_correct_dogs,100.0
+All the percentages include: pct_correct_breed,100.0
+All the percentages include: pct_correct_notdogs,100.0
+Incorrectly classified dog images:
+
+** Total Elapsed Runtime: 0:0:3
