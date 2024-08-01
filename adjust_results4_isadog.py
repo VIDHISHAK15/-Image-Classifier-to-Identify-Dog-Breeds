@@ -3,7 +3,9 @@
 # */AIPND-revision/intropyproject-classify-pet-images/adjust_results4_isadog.py
 #                                                                             
 # PROGRAMMER: BETTY KAMANDE
-# DATE CREATED: 16.08.2022                                
+# DATE CREATED: 16.08.2022                 
+
+
 # REVISED DATE: 
 # PURPOSE: Create a function adjust_results4_isadog that adjusts the results 
 #          dictionary to indicate whether or not the pet image label is of-a-dog, 
@@ -67,31 +69,39 @@ def adjust_results4_isadog(results_dic, dogfile):
     Returns:
            None - results_dic is mutable data type so no return needed.
     """  
+     # Creates dognames_dictionnary
+     dog_dict = dict()
+
     with open(dogfile,"r") as d:
         lines = d.readlines()
-        strip_lines = [line.rstrip('\n') for line in lines]
+
+        while lines !="";
+
+           line = line.rstrip()
+
+            # adds dogname(line) to dogsnames_dic if it doesn't already exist
+            # in the dogsnames_dic dictionary
+            if line not in dog_dict:
+                dog_dict[line] = 1
+             else:
+                print("Warning: Key=", line, "already exists  =", dog_dict[line])
+            # Reads in next line in file to be processed with while loop
+            # if this line isn't empty (EOF)
+            line = d.readline()
+
    
-    #print 
+    
 
-    dog_names = dict()
-    for name in strip_lines:
-    #print
-
-        if name not in dog_names:
-            dog_names[name] = 1
+    for key in results_dic:
+        if results_dic[key][0].lower() in dog_dict:
+            if results_dic[key][1].lower() in dog_dict:
+                results_dic[key].extend((1, 1))
+            else:
+                results_dic[key].extend((1, 0))
         else:
-            print("warning!!!duplicate dog name in the dognames.txt")
-    #print
-
-    for key in results_dic.items():
-        if key[0] in dog_names:
-                key.append((1,1))
-        else:
-            key.append((1,0))
-                
-        if key[1] in dog_names:
-                key.append((0,1))
-        else:
-          key.append((0,0))                 
-    print(results_dic)
-    None
+            if results_dic[key][1] in dog_dict:
+                results_dic[key].extend((0, 1)) 
+            else:
+                results_dic[key].extend((0, 0))
+        print(results_dic)
+    
