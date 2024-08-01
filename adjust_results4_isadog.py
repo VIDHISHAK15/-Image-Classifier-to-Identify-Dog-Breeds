@@ -76,31 +76,79 @@ def adjust_results4_isadog(results_dic, dogfile):
         lines = d.readlines()
 
         while lines !="";
+        # TODO: 4a. REPLACE pass with CODE to remove the newline character
+            #           from the variable line  
+            #
+            # Process line by striping newline from line
 
            line = line.rstrip()
 
             # adds dogname(line) to dogsnames_dic if it doesn't already exist
             # in the dogsnames_dic dictionary
+
+        # TODO: 4b. REPLACE pass with CODE to check if the dogname(line) 
+            #          exists within dognames_dic, then if the dogname(line) 
+            #          doesn't exist within dognames_dic then add the dogname(line) 
+            #          to dognames_dic as the 'key' with the 'value' of 1. 
+            #
+            # adds dogname(line) to dogsnames_dic if it doesn't already exist 
+            # in the dogsnames_dic dictionary
             if line not in dog_dict:
                 dog_dict[line] = 1
              else:
                 print("Warning: Key=", line, "already exists  =", dog_dict[line])
+                 
             # Reads in next line in file to be processed with while loop
             # if this line isn't empty (EOF)
             line = d.readline()
 
-   
+   print(dog_dict)
     
+# Add to whether pet labels & classifier labels are dogs by appending
+    # two items to end of value(List) in results_dic. 
+    # List Index 3 = whether(1) or not(0) Pet Image Label is a dog AND 
+    # List Index 4 = whether(1) or not(0) Classifier Label is a dog
+    # How - iterate through results_dic if labels are found in dognames_dic
+    # then label "is a dog" index3/4=1 otherwise index3/4=0 "not a dog"
 
+    
     for key in results_dic:
         if results_dic[key][0].lower() in dog_dict:
             if results_dic[key][1].lower() in dog_dict:
                 results_dic[key].extend((1, 1))
+
+
+   # TODO: 4c. REPLACE pass BELOW with CODE that adds the following to
+            #           results_dic dictionary for the key indicated by the 
+            #           variable key - append (1,0) to the value using 
+            #           the extend list function. This indicates
+            #           the pet label is-a-dog, classifier label is-NOT-a-dog. 
+            #                              
+            # Classifier Label IS NOT image of dog (e.g. NOT in dognames_dic)
+            # appends (1,0) because only pet label is a dog
             else:
                 results_dic[key].extend((1, 0))
+
+        # TODO: 4d. REPLACE pass BELOW with CODE that adds the following to
+            #           results_dic dictionary for the key indicated by the 
+            #           variable key - append (0,1) to the value using
+            #           the extend list function. This indicates
+            #           the pet label is-NOT-a-dog, classifier label is-a-dog. 
+            #                              
+            # Classifier Label IS image of Dog (e.g. found in dognames_dic)
+            # appends (0, 1)because only Classifier labe is a dog
         else:
             if results_dic[key][1] in dog_dict:
-                results_dic[key].extend((0, 1)) 
+                results_dic[key].extend((0, 1))
+
+# TODO: 4e. REPLACE pass BELOW with CODE that adds the following to
+            #           results_dic dictionary for the key indicated by the 
+            #           variable key - append (0,0) to the value using the 
+            #           extend list function. This indicates
+            #           the pet label is-NOT-a-dog, classifier label is-NOT-a-dog. 
+            #                                              
+            # Classifier Label IS NOT image of Dog (e.g. NOT in dognames_dic)
+            # appends (0, 0) because both labels aren't dogs
             else:
                 results_dic[key].extend((0, 0))
         print(results_dic)
